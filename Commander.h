@@ -30,6 +30,11 @@ enum MessageState {
 #define COMMANDBUFFERSIZE  64
 #define STREAMBUFFERSIZE   512
 
+#define ACK (char) 0x06
+#define NAK (char) 0x15
+#define EOT (char) 0x04
+#define ENQ (char) 0x05
+
 class Commander 
 {
     public:
