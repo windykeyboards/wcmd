@@ -17,13 +17,13 @@ extern "C"
 struct Command {
     String name;
     Callback callback;
-}
+};
 
 enum MessageState {
     EMPTY,
     ID_READ,
     MESSAGE_READ
-}
+};
 
 #define MAXCOMMANDS        10  
 #define IDBUFFERSIZE       8
