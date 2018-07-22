@@ -19,6 +19,12 @@ struct Command {
     Callback callback;
 }
 
+enum MessageState {
+    EMPTY,
+    ID_READ,
+    MESSAGE_READ
+}
+
 #define MAXCOMMANDS        10  
 #define IDBUFFERSIZE       8
 #define COMMANDBUFFERSIZE  64
@@ -40,6 +46,7 @@ class Commander
 
         // Generic messaging
         void write(String message);
+        void writeln(String message);
         void nak();
         void ack();
         void eot();
@@ -51,18 +58,23 @@ class Commander
         String commandId;
         String deviceId;
 
-        uint8_t bufferIndex;             
-        uint8_t bufferLength;            
-        uint8_t bufferLastIndex;
-        char idBuffer[IDBUFFERSIZE];          
-        char commandBuffer[COMMANDBUFFERSIZE]; 
-	    char streamBuffer[STREAMBUFFERSIZE]; 
+        uint8_t commandIndex;
+        MessageState currentState;
 
-        int commandIndex = 0;
+        char idFirstCharacter;
+        uint8_t idBufferIndex;
+        uint8_t idExpectedLength;
+        char idBuffer[IDBUFFERSIZE]; 
+        
+        uint8_t bufferIndex;            
+        char commandBuffer[COMMANDBUFFERSIZE + 1]; // +1 for null terminating character
+
+	    char streamBuffer[STREAMBUFFERSIZE]; 
 
         void onEnquiry();
         void onUnhandled();
         void dispatch();
+        void reset();
 };
 
 #endif
