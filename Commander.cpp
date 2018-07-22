@@ -87,7 +87,7 @@ void Commander::onLoop() {
 
 void Commander::dispatch() {
     // Short circuit if it's a who-am-i
-    if (commandBuffer[0] == (char) 0x05) {
+    if (commandBuffer[0] == ENQ) {
         onEnquiry();
         reset();
         return;
@@ -126,15 +126,15 @@ void Commander::writeln(String message) {
 }
 
 void Commander::nak() {
-    write(String(15, HEX));
+    write(NAK);
 }
 
 void Commander::ack() {
-    write(String(6, HEX));
+    write(ACK);
 }
 
 void Commander::eot() {
-    write(String(4, HEX));
+    write(EOT);
 }
 
 void Commander::onEnquiry() {
