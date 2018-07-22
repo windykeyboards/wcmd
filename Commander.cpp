@@ -6,14 +6,9 @@
  */
 Commander::Commander(Stream & stream, const String commandId, const String deviceId): stream(&stream), commandId(commandId), deviceId(deviceId)
 {
-    onUnhandled = onUnhandled;
     idExpectedLength = commandId.length();
     idFirstCharacter = commandId.charAt(0);
     reset();
-}
-
-void Commander::onUnhandled(Callback Callback) {
-    onUnhandled = callback;
 }
 
 void Commander::attach(Command command) {
