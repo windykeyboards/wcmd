@@ -40,6 +40,7 @@ class Commander
 
         // Attach command
         void attach(Command command);
+        void attach(String commandName, Callback callback);
 
         // For feeding in Serial
         void onLoop();
