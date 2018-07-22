@@ -52,7 +52,6 @@ class Commander
         void eot();
 
     private:  
-        Callback onUnhandled;
         Command commands[MAXCOMMANDS];
         Stream *stream;
         String commandId;
