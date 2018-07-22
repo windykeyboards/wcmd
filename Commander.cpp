@@ -59,7 +59,7 @@ void Commander::onLoop() {
                 case MESSAGE_READ:
                     if (current == '\n') {
                         // Terminate and dispatch
-                        commandBuffer[bufferIndex] = '\0'
+                        commandBuffer[bufferIndex] = '\0';
                         dispatch();
                     } else {
                         if (bufferIndex < COMMANDBUFFERSIZE) { 
@@ -94,18 +94,18 @@ void Commander::dispatch() {
     reset();
 }
 
-void Commaner::reset() {
+void Commander::reset() {
     idBufferIndex = 0;
     bufferIndex = 0;
     currentState = EMPTY;
 }
 
 void Commander::write(String messsage) {
-    stream->write(messsage);
+    stream->print(messsage);
 }
 
 void Commander::writeln(String message) {
-    stream->write(message + '\n');
+    stream->print(message + '\n');
 }
 
 void Commander::nak() {
